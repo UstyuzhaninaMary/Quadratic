@@ -47,18 +47,6 @@ bool cmpWithZero( double value );
 int printAnswer( int nRoots, double x1, double x2 ); // nRoots, x1, x2
 
 /**
- * \brief Starting unit-test
- * \details Return amount failed unit tests
- */ 
-int RunUnitTest();
-
-/**
- * \brief Do one test.
- * \details Input: a, b, c, amount of roots, x1, x2. Return failed test or not.
- */
-int OneUnitTest( double a, double b, double c, int nRoots, double x1, double x2 );
-
-/**
  * \brief Solve quadratic equation.
  * \details Input:a, b, c, *x1, *x2. Return amount of roots.
  */

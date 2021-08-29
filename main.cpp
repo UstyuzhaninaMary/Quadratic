@@ -1,4 +1,5 @@
 #include "quadratic.hpp"
+#include "quadroUnitTest.hpp"
 
 int main()
 {
