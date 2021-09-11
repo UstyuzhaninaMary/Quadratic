@@ -1,3 +1,14 @@
+/** \file
+ * Solves a quadratic equation or do unit-tests.
+ * Asks to do unit-tests or solve the equation
+*/
+
+/**
+ * \author Ustyuzhanina Maria
+ * \version 1.0
+ * \date The end of august 2021
+*/
+
 #include "quadratic.hpp"
 #include "quadroUnitTest.hpp"
 

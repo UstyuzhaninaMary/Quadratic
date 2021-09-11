@@ -9,7 +9,7 @@ int SolveSquare( double a, double b, double c, double* x1, double* x2 )
     assert( std::isfinite( c ) );
     assert( x1 != nullptr ); 
     assert( x2 != nullptr );
-    assert( x1 != x2 );
+    assert(*x1 != *x2     );
 
     double disc = NAN; //Discriminant
 
@@ -20,11 +20,11 @@ int SolveSquare( double a, double b, double c, double* x1, double* x2 )
     assert( std::isfinite( disc ) );
 
     //Find roots
-    if( cmpWithZero( a ) ) //Compare "a" with zero
+    if( cmpWithNumber( a, 0 ) ) //Compare "a" with zero
     { 
-        if( cmpWithZero( b ) )
+        if( cmpWithNumber( b, 0 ) )
         {
-            if( cmpWithZero( c ) )
+            if( cmpWithNumber( c, 0) )
             {
                 return INF;
             }
@@ -49,7 +49,7 @@ int SolveSquare( double a, double b, double c, double* x1, double* x2 )
             return TWOROOTS;
         }
 
-        else if( cmpWithZero(disc) )
+        else if( cmpWithNumber(disc, 0) )
         {
             *x1 = (-b / (2 * a));
 
@@ -66,7 +66,7 @@ int SolveSquare( double a, double b, double c, double* x1, double* x2 )
 int printAnswer( int nRoots, double x1, double x2 )
 {
     assert( !isnan(x1) );
-    assert( x1 != x2 );
+    assert( !cmpWithNumber(x1, x2) );
 
     switch( nRoots )
     {
@@ -95,13 +95,12 @@ double discriminant ( double a, double b, double c )
 }
 
 //Compare with 0
-bool cmpWithZero( double value )
+bool cmpWithNumber( double value, double number )
 {
     assert( !isnan(value) );
-    if ( fabs( value ) < INACCURACY )
+    if(( value < (number + INACCURACY) ) and ( value > (number - INACCURACY) ))
     {
         return true;
     } 
     return false;
 }
-

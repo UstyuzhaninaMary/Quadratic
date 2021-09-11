@@ -1,4 +1,3 @@
-// TODO указывай имена в объявлениях функций, называй функции одинаково, почитай про структуры (struct {...}), придумай как переписать тестирование
 
 /** \file
  * Solves a quadratic equation.
@@ -38,7 +37,7 @@ double discriminant( double a, double b, double c );
  * \brief Comparison with zero of numbers of type double.
  * \details Input: Сompared value. Output: is value 0 or not.
 */
-bool cmpWithZero( double value );
+bool cmpWithNumber( double value, double number);
 
 /**
  * \brief Function print answer.
