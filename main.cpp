@@ -12,14 +12,17 @@
 #include "quadratic.hpp"
 #include "quadroUnitTest.hpp"
 
+#define SCAN_ERROR  -1
+#define PRINT_ERROR -2
+
 int main(void){
 
-    printf("Do Unit tect?(Y/N)\n");
+    printf("Do Unit test?(Y/N)\n");
     char result = 'x';
 
-    if ( scanf(" %c", &result) == 1 ) {
+    if (scanf(" %c", &result) == 1) {
 
-        if ( result == 'Y' ) {
+        if (result == 'Y') {
 
             printf("Number of failed test %d\n", RunUnitTest());
             return 0;
@@ -45,17 +48,17 @@ int main(void){
 
     //Input coefficient
     printf("Input values(Example: a b c)\n");
-    if (scanf("%lg %lg %lg", &a, &b, &c ) != 3){
+    if (scanf("%lg %lg %lg", &a, &b, &c ) != 3) {
 
         printf("Input error\n");
-        return 1;
+        return SCAN_ERROR;
     }
     
     //Solve
     int nRoots = SolveSquare(a, b, c, &x1, &x2);
 
     //Print roots
-    if (!printAnswer(nRoots, x1, x2)) return 0;
+    if (printAnswer(nRoots, x1, x2)) return PRINT_ERROR;
 
-    return 1;
+    return 0;
 }

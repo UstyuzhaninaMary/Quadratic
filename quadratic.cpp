@@ -17,19 +17,21 @@ int SolveSquare(double a, double b, double c, double* x1, double* x2){
     assert(std::isfinite(disc));
 
     //Find roots
-    if(cmpWithNumber(a, 0)) { //Compare "a" with zero
+    if(isEqual(a, 0)) { //Compare "a" with zero
 
-        if(cmpWithNumber(b, 0)) {
+        if(isEqual(b, 0)) {
 
-            if(cmpWithNumber(c, 0)) {
+            if(isEqual(c, 0)) {
 
                 return INF;
             }
             else {
+
                 return NOROOTS;
             }
         }
         else {
+
             *x1 = - c / b;
             return ONEROOT;
         }
@@ -37,17 +39,21 @@ int SolveSquare(double a, double b, double c, double* x1, double* x2){
     else {
 
         if(disc > INACCURACY) {
-            *x1 = (-b + sqrt(disc)) / (2 * a);
-            *x2 = (-b - sqrt(disc)) / (2 * a);
+
+            double sqrtDisc = sqrt(disc);
+            *x1 = (-b + sqrtDisc) / (2 * a);
+            *x2 = (-b - sqrtDisc) / (2 * a);
 
             return TWOROOTS;
         }
-        else if(cmpWithNumber(disc, 0)) {
+        else if(isEqual(disc, 0)) {
+
             *x1 = (-b / (2 * a));
 
             return ONEROOT;
         }
         else {
+
             return NOROOTS;
         }
     }
@@ -56,36 +62,32 @@ int SolveSquare(double a, double b, double c, double* x1, double* x2){
 int printAnswer(int nRoots, double x1, double x2) {
 
     assert(!isnan(x1));
-    assert(!cmpWithNumber(x1, x2));
+    assert(!isEqual(x1, x2));
 
     switch(nRoots) {
-    case NOROOTS:
-        printf ( "No roots\n" );
-        return 0;
-    case ONEROOT:
-        printf( "One root: %g\n", x1 );
-        return 0;
-    case TWOROOTS:
-        printf( "Two roots: %g and %g\n", x1, x2 );
-        return 0;
-    case INF: 
-        printf( "Infintry of roots\n" );
-        return 0;
-    default:
-        printf( "Error in printAnswer()\n" );
-        return 1;
+        case NOROOTS:
+            printf ( "No roots\n" );
+            return 0;
+        case ONEROOT:
+            printf( "One root: %g\n", x1 );
+            return 0;
+        case TWOROOTS:
+            printf( "Two roots: %g and %g\n", x1, x2 );
+            return 0;
+        case INF: 
+            printf( "Infintry of roots\n" );
+            return 0;
+        default:
+            printf( "Error in printAnswer()\n" );
+            return 1;
     }
 }
 
-
 //Compare with 0
-bool cmpWithNumber(double value, double number) {
+bool isEqual(double a, double b) {
 
-    assert(!isnan(value));
-    if((value < (number + INACCURACY)) and (value > (number - INACCURACY))) {
+    assert(!isnan(a));
+    assert(!isnan(b));
 
-        return true;
-    }
-
-    return false;
+    return (fabs(a - b) < INACCURACY);
 }

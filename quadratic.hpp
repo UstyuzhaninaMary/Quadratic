@@ -18,8 +18,7 @@
 /// For take into account the error when comparing
 const double INACCURACY = 0.0001;
 
-enum SolveStatus
-{
+enum SolveStatus {
     INF      = -3,    ///< Used to denote an infinite number of solutions.
     NOROOTS  =  0,    ///< Used to denote the absence of roots in the equation.
     ONEROOT  =  1,    ///< Used to denote the presence of a single root.
@@ -28,9 +27,9 @@ enum SolveStatus
 
 /**
  * \brief Comparison with zero of numbers of type double.
- * \details Input: Сompared value. Output: is value 0 or not.
+ * \details Input: Сompared value. Output: does value equal number or not.
 */
-bool cmpWithNumber(double value, double number);
+bool isEqual(double a, double b);
 
 /**
  * \brief Function print answer.
