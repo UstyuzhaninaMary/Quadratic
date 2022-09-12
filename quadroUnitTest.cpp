@@ -47,18 +47,36 @@ int OneUnitTest(struct DataForUnitTest oneTest, int i) {
 
     int nRoots = SolveSquare(a, b, c, &x1, &x2);
 
-//переписать if
-    if  (( nRoots == real_nRoots)             && 
-        (((nRoots == 1) && (x1 == real_x1))   || 
-        (  nRoots == INF)                     || 
-        (  nRoots == 0)                       || 
-        (( nRoots == 2) && ((x1 == real_x1) && (x2 == real_x2)) || ((x2 == real_x1) && (x1 == real_x2))))) {
+    if(nRoots == real_nRoots) {
 
-            return 0;
+        switch (nRoots) {
+            case ONEROOT:
+                if(x1 != real_x1) {
+                    printf("Error in test %d nRoots=%d real_nRoots=%d, a=%lf b=%lf, c=%lf\n. x1 != real x1", 
+                    i, nRoots, real_nRoots, a, b, c);
+
+                    return 0;
+                }
+                break;
+            case INF:
+                break;
+            case NOROOTS:
+                break;
+            case TWOROOTS:
+                if(!(((x1 == real_x1) && (x2 == real_x2)) || ((x2 == real_x1) && (x1 == real_x2)))) {
+                    printf("Error in test %d nRoots=%d real_nRoots=%d, a=%lf b=%lf, c=%lf\n. Roots isn't match. \n", 
+                    i, nRoots, real_nRoots, a, b, c);
+
+                    return 1;
+                }
+                break;
+            default:
+                printf("Error in test %d nRoots=%d real_nRoots=%d, a=%lf b=%lf, c=%lf\n", 
+                i, nRoots, real_nRoots, a, b, c);
+
+                return 1;
         }
+    }
 
-    printf("Error in test %d nRoots=%d real_nRoots=%d, a=%lf b=%lf, c=%lf\n", 
-            i, nRoots, real_nRoots, a, b, c);
-
-    return 1;
+    return 0;
 }
